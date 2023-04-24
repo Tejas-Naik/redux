@@ -1,5 +1,5 @@
 import store from "./store";
-import { bugAddedAction, bugRemovedAction } from "./actions";
+import { bugAddedAction, bugRemovedAction, bugResolvedAction } from "./actions";
 
 function App() {
   // Subscribing to the store (getting updates whenever the state changes)
@@ -12,6 +12,7 @@ function App() {
 
   // unsubscribe();
 
+  store.dispatch(bugResolvedAction(1));
   store.dispatch(bugRemovedAction(1));
 
   return (
