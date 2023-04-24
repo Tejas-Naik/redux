@@ -1,12 +1,26 @@
 import store from "./store";
+import * as actions from "./actionTypes";
 
 function App() {
-  console.log(store.getState());
+  // Subscribing to the store (getting updates whenever the state changes)
+  const unsubscribe = store.subscribe(() => {
+    console.log("Store Changed", store.getState());
+  })
 
+  // Dispatching Actions
   store.dispatch({
-    type: "bugAdded",
+    type: actions.BUG_ADDED,
     payload: {
       description: "Bug 1"
+    }
+  })
+
+  unsubscribe();
+
+  store.dispatch({
+    type: actions.BUG_REMOVED,
+    payload: {
+      id: 1
     }
   })
 
