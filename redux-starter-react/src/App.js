@@ -1,10 +1,16 @@
 import store from "./store";
+import customStore from "./customStore";
 import { bugAddedAction, bugRemovedAction, bugResolvedAction } from "./actions";
+
+// Custom Store
+const cstore = customStore();
+cstore.state = 1;
+console.log(cstore.state);
 
 function App() {
   // Subscribing to the store (getting updates whenever the state changes)
   const unsubscribe = store.subscribe(() => {
-    console.log("Store Changed", store.getState());
+    // console.log("Store Changed", store.getState());
   })
 
   // Dispatching Actions
@@ -14,6 +20,8 @@ function App() {
 
   store.dispatch(bugResolvedAction(1));
   store.dispatch(bugRemovedAction(1));
+
+  // console.log(store);
 
   return (
     <div className="App">
